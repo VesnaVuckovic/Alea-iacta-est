@@ -1,0 +1,11 @@
+{
+  "name": "alea-iacta-est",
+  "version": "1.0.0",
+  "description": "Throwing the dice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "W_VesnaVuckovic",
+  "license": "ISC"
+}

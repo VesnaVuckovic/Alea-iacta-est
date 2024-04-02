@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Alea iacta est</title>
+</head>
+
+<body>
+
+  <h1>Game</h1>
+
+    <div id="player1Panel" class="player-panel">
+        <div class="score">
+            <div>Player 1 <span class="player-status" id="player1Status"> </span></div>
+            <div>Current Score: <span id="player1CurrentScore">0</span></div>
+            <div>Total Score: <span id="player1TotalScore">0</span></div>
+        </div>
+    </div>
+  
+    <div id="diceContainer" class="dice">
+        <ol class="die-list even-roll" data-roll="1" id="die-1">
+      <li class="die-item" data-side="1">
+        <span class="dot"></span>
+      </li>
+      <li class="die-item" data-side="2">
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </li>
+      <li class="die-item" data-side="3">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </li>
+      <li class="die-item" data-side="4">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </li>
+      <li class="die-item" data-side="5">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </li>
+      <li class="die-item" data-side="6">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </li>
+        </ol>
+    </div>
+
+    <div id="player2Panel" class="player-panel">
+        <div class="score">
+          <div>Player 2 <span class="player-status" id="player2Status"> </span></div>
+          <div>Current Score: <span id="player2CurrentScore">0</span></div>
+          <div>Total Score: <span id="player2TotalScore">0</span></div>
+        </div>
+    </div>
+  
+    <button id="rollDiceButton">Roll Dice</button>
+    
+  <script type="module" src="script.js"></script>
+  
+</body>
+</html>
