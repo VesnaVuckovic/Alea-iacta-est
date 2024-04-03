@@ -228,6 +228,9 @@ button:hover {
   font-weight: bold;
   margin-left: 5px;
 }
+#diceResult{
+  display: none
+}
 @media (min-width: 900px) {
   .dice {
     perspective: 1300px;

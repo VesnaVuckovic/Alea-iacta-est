@@ -1,23 +1,27 @@
 const Dice = () => {
-    function rollDice() {
-      const dice = [...document.querySelectorAll('.die-list')];
-      dice.forEach(die => {
-        toggleClasses(die);
-        const roll = rollDie();
-        die.dataset.roll = roll;
-      });
+  function rollDice () {
+    const dice = document.querySelector ('.die-list');
+    if (dice) {
+      toggleClasses (dice);
+      const roll = rollDie ();
+      dice.dataset.roll = roll;
+      return roll;
+    } else {
+      console.error ('Dice element not found.');
+      return null;
     }
+  }
   
-    function toggleClasses(die) {
-      die.classList.toggle('odd-roll');
-      die.classList.toggle('even-roll');
-    }
-  
-    function rollDie() {
-      return Math.floor(Math.random() * 6) + 1;
-    }
-  
-    return { rollDice };
+  function toggleClasses (die) {
+    die.classList.toggle ('odd-roll');
+    die.classList.toggle ('even-roll');
+  }
+
+  function rollDie () {
+    return Math.floor (Math.random () * 6) + 1;
+  }
+
+  return {rollDice};
 };
-  
+
 export default Dice;
