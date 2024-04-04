@@ -19,6 +19,11 @@
             <div>Total Score: <span id="player1TotalScore">0</span></div>
         </div>
     </div>
+
+    <button id="startButton">Who plays first?</button>
+    <div id="playerChoiceDisplay"></div>
+    <button id="stopButton">Stop</button>
+
   
     <div id="diceContainer" class="dice">
         <ol class="die-list even-roll" data-roll="1" id="die-1">
@@ -65,11 +70,10 @@
           <div><button id="collectButton2">Collect</button></div>
           <div>Total Score: <span id="player2TotalScore">0</span></div>
         </div>
-    </div>
-  
-    <button id="rollDiceButton">Roll Dice</button>
+    </div>    
+   
+    <button id="rollDiceButton" disabled>Roll Dice</button>
     <div id="diceResult"></div>
-
     
   <script type="module" src="script.js"></script>
   

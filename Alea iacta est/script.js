@@ -1,36 +1,44 @@
 import Dice from './dice.js';
+import {start, stop} from './playerStart.js';
+import {chooseStartingPlayer} from './playerStart.js';
+export let startingPlayer;
 
 const diceModule = Dice ();
 
 document.addEventListener ('DOMContentLoaded', function () {
-  // Wait for DOM content to be loaded
-  const player1Panel = document.getElementById ('player1Panel'); // Get DOM elements
-  const player2Panel = document.getElementById ('player2Panel');
   const rollDiceButton = document.getElementById ('rollDiceButton');
   const diceResult = document.getElementById ('diceResult');
   const player1Status = document.getElementById ('player1Status');
   const player2Status = document.getElementById ('player2Status');
-  const winnerDisplay = document.getElementById ('winnerDisplay');
+  const startButton = document.getElementById ('startButton');
+  const stopButton = document.getElementById ('stopButton');
 
-  // Initialize game variables
-  let currentPlayer = 1;
+  let currentPlayer = chooseStartingPlayer ();
+  let startingPlayer = currentPlayer;
   let currentScore = 0;
   let totalScorePlayer1 = 0;
   let totalScorePlayer2 = 0;
   let isGameWon = false;
   let isRolling = false;
 
-  const dice = Dice (); // Initialize the dice object
+  const dice = Dice ();
+  console.log ('Dice OK.');
 
-  updatePlayerStatus ();
+  startButton.addEventListener ('click', function () {
+    startingPlayer = chooseStartingPlayer ();
+    start ();
+  });
+
+  stopButton.addEventListener ('click', function () {
+    stop ();
+  });
 
   rollDiceButton.addEventListener ('click', function () {
-    // Event listener for roll dice button click
-    if (!isGameWon && !isRolling) {
+    if (currentPlayer && !isGameWon && !isRolling) {
       isRolling = true;
-      rollDiceButton.disabled = true;
       const roll = dice.rollDice ();
       diceResult.style.display = 'block';
+      playerChoiceDisplay.style.display = 'none';
       if (roll === 1) {
         currentScore = 0;
         updateCurrentScore ();
@@ -63,7 +71,7 @@ document.addEventListener ('DOMContentLoaded', function () {
   const collectButton1 = document.getElementById ('collectButton1');
   const collectButton2 = document.getElementById ('collectButton2');
 
-  collectButton1.addEventListener ('click', function () {//Event listener for collect current score for player1
+  collectButton1.addEventListener ('click', function () {
     if (!isGameWon && !isRolling && currentScore > 0 && currentPlayer === 1) {
       addCurrentScoreToTotal ();
       currentScore = 0;
@@ -72,7 +80,7 @@ document.addEventListener ('DOMContentLoaded', function () {
     }
   });
 
-  collectButton2.addEventListener ('click', function () {//Event listener for collect current score for player2
+  collectButton2.addEventListener ('click', function () {
     if (!isGameWon && !isRolling && currentScore > 0 && currentPlayer === 2) {
       addCurrentScoreToTotal ();
       currentScore = 0;
@@ -81,7 +89,7 @@ document.addEventListener ('DOMContentLoaded', function () {
     }
   });
 
-  function updateTotalScore (player) {//Function to update total score display
+  function updateTotalScore (player) {
     const totalScoreElement = player === 1
       ? document.getElementById ('player1TotalScore')
       : document.getElementById ('player2TotalScore');
@@ -89,14 +97,14 @@ document.addEventListener ('DOMContentLoaded', function () {
     totalScoreElement.textContent = totalScore;
   }
 
-  function updateCurrentScore () { //Function to update current score display
+  function updateCurrentScore () {
     const currentPlayerScoreElement = currentPlayer === 1
       ? document.getElementById ('player1CurrentScore')
       : document.getElementById ('player2CurrentScore');
     currentPlayerScoreElement.textContent = currentScore;
   }
 
-  function addCurrentScoreToTotal () {// Function to add current score to total score    
+  function addCurrentScoreToTotal () {
     if (currentPlayer === 1) {
       totalScorePlayer1 += currentScore;
       updateTotalScore (1);
@@ -106,7 +114,7 @@ document.addEventListener ('DOMContentLoaded', function () {
     }
   }
 
-  function switchPlayers () {// Function to switch players    
+  function switchPlayers () {
     if (currentPlayer === 1) {
       currentPlayer = 2;
     } else {
@@ -118,7 +126,6 @@ document.addEventListener ('DOMContentLoaded', function () {
   }
 
   function endGame () {
-    // Function to end the game
     if (totalScorePlayer1 >= 101 || totalScorePlayer2 >= 101) {
       isGameWon = true;
       rollDiceButton.disabled = true;
@@ -131,7 +138,6 @@ document.addEventListener ('DOMContentLoaded', function () {
   }
 
   function updatePlayerStatus () {
-    // Function to update player status display
     const player1Status = document.getElementById ('player1Status');
     const player2Status = document.getElementById ('player2Status');
     if (isGameWon) {
@@ -141,5 +147,6 @@ document.addEventListener ('DOMContentLoaded', function () {
       player1Status.textContent = currentPlayer === 1 ? 'Your turn!' : '';
       player2Status.textContent = currentPlayer === 2 ? 'Your turn!' : '';
     }
+    console.log ('Status OK.');
   }
 });

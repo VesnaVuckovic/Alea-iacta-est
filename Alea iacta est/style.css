@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  vertical-align: baseline;
 }
 html {
   font-family: system-ui, sans-serif;
@@ -188,7 +187,6 @@ h1 {
 [data-side="6"] .dot:nth-of-type(6) {
   grid-area: nine;
 }
-
 button {
   align-self: center;
   background-color: red;
@@ -242,4 +240,23 @@ button:hover {
   .dice {
     perspective: 1300px;
   }
+}
+input[type="number"] {
+  padding: 8px;
+  font-size: 16px;
+}
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+}
+#startButton{
+  position: relative;
+  background-color: green;
+}
+#playerChoiceDisplay {
+  display: flex;
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 5em;
 }
