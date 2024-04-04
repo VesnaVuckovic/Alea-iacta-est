@@ -203,6 +203,13 @@ button:hover {
   cursor: pointer;
   background-color: orangered;
 }
+#collectButton1, #collectButton2 {
+  background-color: whitesmoke;
+  border: none;
+  color: red;
+  font-size: 1rem;
+  font-weight: bold;
+}
 .player-panel {
   display: flex;
   flex-direction: column;
