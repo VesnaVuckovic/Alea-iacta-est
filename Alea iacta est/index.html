@@ -1,83 +1,98 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Alea iacta est</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Alea iacta est</title>
+  </head>
 
-<body>
+  <body>
+    <button id="rulesButton">Game rules</button>
 
-  <h1>Game</h1>
+    <div id="rulesModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Game rules</h2>
+        <p>
+          Rolling the dice for two players, who roll one die, which has values
+          ​​from 1 to 6. Click on "Who plays first?" to decide who plays first.
+          The player who is selected rolls the dice and then starts counting
+          points until gets a 6 or a 1. If gets a 6, then the roll of the dice
+          goes to the other player, and the sum will collected without a last
+          six points, and the next roll begins with the collected points and a
+          sum of zero for the new hand of the roll. If rolled a 1, that hand's
+          total will reset to 0. During the game, by clicking on "collect",
+          players can transfer the current score to the total score and save
+          points.The first player who collect 101 points wins.
+        </p>
+      </div>
+    </div>
 
     <div id="player1Panel" class="player-panel">
-        <div class="score">
-            <div>Player 1 </div>
-            <div>Current Score: <span id="player1CurrentScore">0</span></div>
-            <div><button id="collectButton1">Collect</button></div>
-            <div>Total Score: <span id="player1TotalScore">0</span></div>
-        </div>
-        <div><span class="player-status" id="player1Status"> </span></div>
+      <div class="score">
+        <div>Player 1</div>
+        <div>Current Score: <span id="player1CurrentScore">0</span></div>
+        <div><button id="collectButton1">Collect</button></div>
+        <div>Total Score: <span id="player1TotalScore">0</span></div>
+      </div>
+      <div><span class="player-status" id="player1Status"> </span></div>
     </div>
-    
 
     <button id="startButton">Who plays first?</button>
-    <div id="playerChoiceDisplay" style="display: none;"></div>
-    <div id="playerResult" style="display: none;"></div>
-    <button id="stopButton" style="display: none;">Stop</button>
-    <button id="rollDiceButton" style="display: none;">Roll Dice</button>
-    <div id="diceResult"></div>   
+    <div id="playerChoiceDisplay" style="display: none"></div>
+    <div id="playerResult" style="display: none"></div>
+    <button id="stopButton" style="display: none">Stop</button>
+    <button id="rollDiceButton" style="display: none">Roll Dice</button>
+    <div id="diceResult"></div>
 
-  
     <div id="diceContainer" class="dice">
-        <ol class="die-list even-roll" data-roll="1" id="die-1">
-      <li class="die-item" data-side="1">
-        <span class="dot"></span>
-      </li>
-      <li class="die-item" data-side="2">
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </li>
-      <li class="die-item" data-side="3">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </li>
-      <li class="die-item" data-side="4">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </li>
-      <li class="die-item" data-side="5">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </li>
-      <li class="die-item" data-side="6">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </li>
-        </ol>
+      <ol class="die-list even-roll" data-roll="1" id="die-1">
+        <li class="die-item" data-side="1">
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="2">
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="3">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="4">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="5">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="6">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+      </ol>
     </div>
-    
+
     <div id="player2Panel" class="player-panel">
       <div><span class="player-status" id="player2Status"> </span></div>
-        <div class="score">
-          <div>Player 2 </div>
-          <div>Current Score: <span id="player2CurrentScore">0</span></div>
-          <div><button id="collectButton2">Collect</button></div>
-          <div>Total Score: <span id="player2TotalScore">0</span></div>
-        </div>
+      <div class="score">
+        <div>Player 2</div>
+        <div>Current Score: <span id="player2CurrentScore">0</span></div>
+        <div><button id="collectButton2">Collect</button></div>
+        <div>Total Score: <span id="player2TotalScore">0</span></div>
+      </div>
     </div>
-    
-  <script type="module" src="script.js"></script>
-  
-</body>
+
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
