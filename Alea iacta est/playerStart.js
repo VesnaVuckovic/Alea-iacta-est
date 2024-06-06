@@ -1,27 +1,27 @@
 let startRollInterval;
-const diceContainer = document.getElementById ('diceContainer');
+let currentPlayerChoice = 1;
 
-export function chooseStartingPlayer () {
-  return Math.floor (Math.random () * 2) + 1;
+export function chooseStartingPlayer() {
+  return Math.floor(Math.random() * 2) + 1;
 }
 
-diceContainer.style.display = 'none';
-
-export function start () {
-  console.log ('Start ON.');
+export function start(startButton, playerChoiceDisplay) {
   startButton.style.display = 'none';
-  playerChoiceDisplay.id = 'playerChoiceDisplay';
-  document.body.appendChild (playerChoiceDisplay);
-  let currentPlayerChoice = 1;
-  startRollInterval = setInterval (() => {
-    playerChoiceDisplay.textContent = currentPlayerChoice;
+  playerChoiceDisplay.style.display = 'block';
+
+  currentPlayerChoice = 1;
+  playerChoiceDisplay.textContent = `Player ${currentPlayerChoice} plays first.`;
+  startRollInterval = setInterval(() => {
     currentPlayerChoice = currentPlayerChoice === 1 ? 2 : 1;
-  }, 1);
+    playerChoiceDisplay.textContent = `Player ${currentPlayerChoice} plays first.`;
+  }, 100);
 }
-export function stop () {
-  console.log ('Click ON.');
-  clearInterval (startRollInterval);
+
+export function stop(playerChoiceDisplay, rollDiceButton, diceContainer, stopButton) {
+  clearInterval(startRollInterval);
   stopButton.style.display = 'none';
-  rollDiceButton.disabled = false;
-  diceContainer.style.display = 'block';
+  rollDiceButton.style.display = 'block';
+  diceContainer.style.display = 'flex';
+  playerChoiceDisplay.style.display = 'block';
+  return currentPlayerChoice;
 }
