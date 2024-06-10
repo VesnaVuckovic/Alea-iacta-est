@@ -1,6 +1,4 @@
-// script.js
-
-import { start, stop } from './playerStart.js';
+import { start, stop, playAgain } from './playerStart.js';
 import { Dice } from './dice.js';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const collectButton2 = document.getElementById('collectButton2');
   const player1Status = document.getElementById('player1Status');
   const player2Status = document.getElementById('player2Status');
+  const playAgainButton = document.getElementById('playAgainButton');
 
   let startingPlayer;
   let currentPlayer;
@@ -40,13 +39,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   rollDiceButton.addEventListener('click', function () {
+    console.log('Roll Dice clicked');
     if (currentPlayer && !isGameWon && !isRolling) {
+      console.log('Rolling dice for player: ', currentPlayer);
       isRolling = true;
       const dice = Dice();
       const roll = dice.rollDice();      
       diceResultDisplay.style.display = 'block';
       playerChoiceDisplay.style.display = 'none';
 
+      console.log('Dice roll: ', roll);
       if (roll === 1) {
         currentScore = 0;
         updateCurrentScore();
@@ -91,12 +93,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  playAgainButton.addEventListener('click', function () {
+    console.log('Play Again clicked');
+    playAgain();
+    currentScore = 0;
+    totalScorePlayer1 = 0;
+    totalScorePlayer2 = 0;
+    console.log('Scores reset: ', currentScore, totalScorePlayer1, totalScorePlayer2); 
+    updateCurrentScore();
+    updateTotalScore(1);
+    updateTotalScore(2);
+    rollDiceButton.style.display = 'none';
+    diceContainer.style.display = 'none';
+    playAgainButton.style.display = 'none';
+    startButton.style.display = 'block';
+    diceResultDisplay.style.display = 'none';
+    playerChoiceDisplay.textContent = '';
+    player1Status.textContent = '';
+    player2Status.textContent = '';
+    isRolling = false;
+    isGameWon = false;
+    console.log('Game state reset');
+    
+  }); 
+
   function updateTotalScore(player) {
     const totalScoreElement = player === 1
       ? document.getElementById('player1TotalScore')
       : document.getElementById('player2TotalScore');
     const totalScore = player === 1 ? totalScorePlayer1 : totalScorePlayer2;
     totalScoreElement.textContent = totalScore;
+    console.log(`Total score for player ${player} updated: ${totalScore}`);
   }
 
   function updateCurrentScore() {
@@ -104,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ? document.getElementById('player1CurrentScore')
       : document.getElementById('player2CurrentScore');
     currentPlayerScoreElement.textContent = currentScore;
+    console.log(`Current score for player ${currentPlayer} updated: ${currentScore}`);
   }
 
   function addCurrentScoreToTotal() {
@@ -126,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function endGame() {
     if (totalScorePlayer1 >= 101 || totalScorePlayer2 >= 101) {
       isGameWon = true;
-      rollDiceButton.disabled = true;
+      rollDiceButton.style.display = 'none';
+      playAgainButton.style.display = 'block';
       updatePlayerStatus();
     } else {
       isRolling = false;
@@ -158,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
   span.onclick = function() {
     modal.style.display = "none";
   }
-
 
   window.onclick = function(event) {
     if (event.target == modal) {

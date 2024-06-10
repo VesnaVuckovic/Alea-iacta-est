@@ -270,8 +270,7 @@ button:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
+  overflow: auto;  
   background-color: rgba(0,0,0,0.4);
 }
 
@@ -306,19 +305,36 @@ input[type="number"] {
   padding: 8px;
   font-size: 16px;
 }
-#message {
-  margin-top: 15px;
-  font-weight: bold;
-}
-#startButton{
-  position: relative;
+#startButton, #playAgainButton {
+  position: relative;  
   background-color: green;
 }
 #playerChoiceDisplay {
   display: flex;
   height: 10vh;
   align-items: center;
-  justify-content: center;
-  font-size: 4em;
+  justify-content: center;  
+  font-size: 2em;
   color: red;
-} 
+}
+#diceContainer {
+  height: 5vh;
+  margin: auto;
+  background-color: whitesmoke;
+  border: whitesmoke;
+}
+.player-panel {
+  height: 20vh;
+  font-size: 1rem;
+}
+.player-status {  
+  font-size: 1rem;
+  margin: 5px auto;
+  padding: 5px;
+}
+#rollDiceButton,
+#playerChoiceDisplay,
+#stopButton {
+  display: none;
+  margin: 10px auto;
+}

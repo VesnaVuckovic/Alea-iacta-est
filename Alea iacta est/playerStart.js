@@ -1,5 +1,9 @@
 let startRollInterval;
 let currentPlayerChoice = 1;
+let currentScore = 0;
+let totalScorePlayer1 = 0;
+let totalScorePlayer2 = 0;
+let isGameWon = false;
 
 export function chooseStartingPlayer() {
   return Math.floor(Math.random() * 2) + 1;
@@ -24,4 +28,11 @@ export function stop(playerChoiceDisplay, rollDiceButton, diceContainer, stopBut
   diceContainer.style.display = 'flex';
   playerChoiceDisplay.style.display = 'block';
   return currentPlayerChoice;
+}
+
+export function playAgain() {
+  currentScore = 0;
+  totalScorePlayer1 = 0;
+  totalScorePlayer2 = 0;
+  isGameWon = false; 
 }
